@@ -103,6 +103,22 @@ class Mint:
     return status
 
 
+  def get_transactions(self):
+    payload = {
+                'queryNew'       : '',
+                'offset'         : 0,
+                'filterType'     : 'cash',
+                'comparableType' : 8,
+                'acctChanged'    : 'T',
+                'task'           :'transactions,txnfilters',
+                'rnd'            : int(time.time())
+              }
+
+    request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
+
+    return request['set'][0]['data']
+
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
@@ -115,7 +131,7 @@ if __name__ == '__main__':
   mint = Mint(os.environ['USER'], os.environ['PASS'])
   # accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
-  update_accounts = mint.update_accounts()
+  # update_accounts = mint.update_accounts()
+  transactions = mint.get_transactions()
 
-
-  pp(update_accounts)
+  pp(transactions)
