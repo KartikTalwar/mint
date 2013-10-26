@@ -60,7 +60,8 @@ class Mint:
                 ]
               )
 
-    response = self.session.post("https://wwws.mint.com/bundledServiceController.xevent?token="+self.token, data={ "input": payload })
+    post_url = "https://wwws.mint.com/bundledServiceController.xevent?token="+self.token
+    response = self.session.post(post_url, data={"input": payload})
     response = json.loads(response.text)["response"]
     accounts = response["115485"]["response"]
 
