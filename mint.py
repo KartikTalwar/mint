@@ -103,6 +103,12 @@ class Mint:
     return status
 
 
+  def logout(self):
+    if self.token:
+      self.session.get('https://wwws.mint.com/logout.event?task=explicit')
+      return True
+    return False
+
 
 if __name__ == '__main__':
 

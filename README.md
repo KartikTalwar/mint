@@ -88,3 +88,9 @@ mint = mint.Mint(email, password)
 ```py
 True
 ```
+
+### `mint.logout()`
+
+```py
+True
+```
