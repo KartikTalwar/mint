@@ -6,7 +6,7 @@
 ```py
 import mint
 
-mint = Mint(username, password)
+mint = mint.Mint(email, password)
 ```
 
 
