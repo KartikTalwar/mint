@@ -82,3 +82,9 @@ mint = mint.Mint(email, password)
   'yodleeName': u'Savings Account'
 }
 ```
+
+### `mint.update_accounts()`
+
+```py
+True
+```

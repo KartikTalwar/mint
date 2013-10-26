@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import time
 import requests
 from pprint import pprint as pp
 
@@ -12,6 +13,7 @@ class Mint:
     self.password = password
     self.token    = None
     self.session  = requests.Session()
+    self.accounts = []
 
     self.login()
 
@@ -79,11 +81,35 @@ class Mint:
     return {}
 
 
+  def update_accounts(self):
+    post_url = 'https://wwws.mint.com/refreshFILogins.xevent'
+    payload  = {"token" : self.token}
+    send_req = self.session.post(post_url, data=payload)
+
+    status  = False
+    counter = time.time()
+
+    while status is False:
+      check_url = 'https://wwws.mint.com/userStatus.xevent?rnd=%s' % int(time.time())
+      check_req = self.session.get(check_url).json()['isRefreshing']
+
+      time.sleep(0.5)
+
+      if not check_req:
+        status = True
+      if time.time() - counter > 60:
+        break
+
+    return status
+
+
 
 if __name__ == '__main__':
 
   mint = Mint(os.environ['USER'], os.environ['PASS'])
-  accounts = mint.get_accounts()
-  account_detail = mint.get_account_details(accounts[0]['id'])
+  # accounts = mint.get_accounts()
+  # account_detail = mint.get_account_details(accounts[0]['id'])
+  update_accounts = mint.update_accounts()
 
-  pp(account_detail)
+
+  pp(update_accounts)
