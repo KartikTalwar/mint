@@ -35,25 +35,32 @@ class Mint:
     if not self.token:
       return 'Not logged in'
 
-    payload = {"input": json.dumps([
-        {"args": {
-            "types": [
-                "BANK",
-                "CREDIT",
-                "INVESTMENT",
-                "LOAN",
-                "MORTGAGE",
-                "OTHER_PROPERTY",
-                "REAL_ESTATE",
-                "VEHICLE",
-                "UNCLASSIFIED"
-            ]
-        },
-        "id": "115485",
-        "service": "MintAccountService",
-        "task": "getAccountsSorted"}
-    ])}
-    response = self.session.post("https://wwws.mint.com/bundledServiceController.xevent?token="+self.token, data=payload)
+    payload = json.dumps(
+                [
+                  {
+                    "args":
+                      {
+                         "types":
+                           [
+                             "BANK",
+                             "CREDIT",
+                             "INVESTMENT",
+                             "LOAN",
+                             "MORTGAGE",
+                             "OTHER_PROPERTY",
+                             "REAL_ESTATE",
+                             "VEHICLE",
+                             "UNCLASSIFIED"
+                           ]
+                      },
+                    "id": "115485",
+                    "service": "MintAccountService",
+                    "task": "getAccountsSorted"
+                  }
+                ]
+              )
+
+    response = self.session.post("https://wwws.mint.com/bundledServiceController.xevent?token="+self.token, data={ "input": payload })
     response = json.loads(response.text)["response"]
     accounts = response["115485"]["response"]
 
