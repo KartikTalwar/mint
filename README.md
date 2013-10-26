@@ -94,3 +94,47 @@ True
 ```py
 True
 ```
+
+### `mint.get_transactions()`
+
+```py
+[
+  {
+    'account': u'Savings Account',
+    'amount': u'$0.12',
+    'category': u'Interest Income',
+    'categoryId': 3005,
+    'date': u'Jul 31',
+    'fi': u'Bank Name',
+    'hasAttachments': False,
+    'id': 217642499,
+    'isAfterFiCreationTime': False,
+    'isCheck': False,
+    'isChild': False,
+    'isDebit': False,
+    'isDuplicate': False,
+    'isEdited': False,
+    'isFirstDate': True,
+    'isLinkedToRule': False,
+    'isMatched': False,
+    'isPending': False,
+    'isPercent': False,
+    'isSpending': True,
+    'isTransfer': False,
+    'labels': [],
+    'manualType': 0,
+    'mcategory': u'Interest Income',
+    'merchant': u'Interest Paid',
+    'mmerchant': u'Interest Paid',
+    'note': u'',
+    'numberMatchedByRule': 6,
+    'odate': u'Jul 31',
+    'omerchant': u'Interest Paid',
+    'ruleCategory': u'',
+    'ruleCategoryId': 0,
+    'ruleMerchant': u'',
+    'txnType': 0,
+    'userCategoryId': None
+  }
+]
+```
