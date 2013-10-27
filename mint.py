@@ -125,6 +125,13 @@ class Mint:
     if 'vacation' in kwargs:
       if kwargs['vacation']:
         payload['query'] = 'tag:"Vacation"'
+    if 'investment' in kwargs:
+      if kwargs['investment']:
+        payload.update({'filterType' : 'investment'})
+    if 'loan' in kwargs:
+      if kwargs['loan']:
+        payload.update({'filterType' : 'loan'})
+
 
     request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
 
