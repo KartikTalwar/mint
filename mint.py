@@ -149,6 +149,10 @@ class Mint:
                 'rnd'            : int(time.time())
               }
 
+    if 'start_date' in kwargs:
+      payload['startDate'] = kwargs['start_date']
+    if 'end_date' in kwargs:
+      payload['endDate'] = kwargs['end_date']
     if 'account_id' in kwargs:
       payload['accountId'] = kwargs['account_id']
     if 'reimbursable' in kwargs:

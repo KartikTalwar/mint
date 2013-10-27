@@ -160,7 +160,7 @@ mint.get_transactions(account_id=12345, tax_related=True)
 ```
 
 
-### `mint.get_transactions(query, **kwargs)`
+### `mint.search_transactions(query, **kwargs)`
 
 
 **Optional Paramters**
@@ -173,7 +173,9 @@ args = {
          "tax_related" : False,
          "vacation" : False,
          "loan" : False,
-         "investment" : False
+         "investment" : False,
+         "start_date" : "09/01/13",
+         "end_date" : "09/30/13",
        }
 
 mint.search_transactions('paid', **args)
