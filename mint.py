@@ -103,7 +103,7 @@ class Mint:
     return status
 
 
-  def get_transactions(self):
+  def get_transactions(self, **kwargs):
     payload = {
                 'queryNew'       : '',
                 'offset'         : 0,
@@ -113,6 +113,12 @@ class Mint:
                 'task'           :'transactions,txnfilters',
                 'rnd'            : int(time.time())
               }
+
+    if 'account_id' in kwargs:
+      payload['accountId'] = kwargs['account_id']
+    if 'reimbursable' in kwargs:
+      if kwargs['reimbursable']:
+        payload['query'] = 'tag:"Reimbursable"'
 
     request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
 
@@ -129,9 +135,9 @@ class Mint:
 if __name__ == '__main__':
 
   mint = Mint(os.environ['USER'], os.environ['PASS'])
-  # accounts = mint.get_accounts()
+  accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
   # update_accounts = mint.update_accounts()
-  transactions = mint.get_transactions()
+  transactions = mint.get_transactions(account_id=accounts[0]['id'])
 
   pp(transactions)

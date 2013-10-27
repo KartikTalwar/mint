@@ -95,7 +95,7 @@ True
 True
 ```
 
-### `mint.get_transactions()`
+### `mint.get_transactions(account_id=None, reimbursable=False)`
 
 ```py
 [
