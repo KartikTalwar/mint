@@ -292,6 +292,15 @@ class Mint:
 
     return response.json()['response']
 
+
+  def update_bitcoins(self, coinbase_apikey):
+    balance   = self.session.get('https://coinbase.com/api/v1/account/balance?api_key=%s' % coinbase_apikey).json()['amount']
+    bitvalue  = self.session.get('https://coinbase.com/api/v1/prices/sell?qty=%s' % balance).json()['amount']
+    bitcoinid = self.add_new_property('Bitcoins')['accountId']
+
+    return self.update_property(bitcoinid, bitvalue)
+
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
@@ -311,6 +320,7 @@ if __name__ == '__main__':
   # budget = mint.get_budget('10/01/2013', '10/30/2013')
   # add_prop = mint.add_new_property('Bitcoin')
   # update_prop = mint.update_property(3551373, 100)
-  disp_prop = mint.get_properties()
+  # disp_prop = mint.get_properties()
+  bitcoins = mint.update_bitcoins(os.environ['API'])
 
-  pp(disp_prop)
+  pp(bitcoins)

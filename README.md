@@ -27,6 +27,7 @@ mint = mint.Mint(email, password)
 - mint **.get_properties(name)**
 - mint **.add_new_property(name)**
 - mint **.update_property(account_id, amount)**
+- mint **.update_bitcoins(coinbase_apikey)**
 
 
 ### Descriptions
@@ -481,4 +482,15 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
     'userValue': u'5.00'
   }
 ]
+```
+
+
+#### `mint.update_bitcoins(coinbase_apikey)`
+
+
+```py
+{
+  'accountId': 3551373,
+  'id': 1109355
+}
 ```
