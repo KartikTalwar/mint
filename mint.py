@@ -269,12 +269,21 @@ class Mint:
 
     return request.json()['response']
 
-    # post_args = {"accountId": account_id, "types": "ot", "accountName": "Bitcoin",
-    #             "accountValue": formatted_amount, "associatedLoanRadio": "No", "accountType": "3",
-    #             "accountStatus": "1",  "token": token}
-    # response = url_post("https://wwws.mint.com/updateAccount.xevent", post_args)
-    # print "Updated Bitcoin account on mint with current balance: %s" % (formatted_amount)
-    # return response
+
+  def update_property(self, account_id, value):
+    payload = {
+                "accountId": account_id,
+                "types": "ot",
+                "accountValue": value,
+                "associatedLoanRadio": "No",
+                "accountType": "3",
+                "accountStatus": "1",
+                "token": self.token
+              }
+
+    response = self.session.post("https://wwws.mint.com/updateAccount.xevent", data=payload)
+
+    return response.json()['response']
 
   def logout(self):
     if self.token:
@@ -293,6 +302,7 @@ if __name__ == '__main__':
   # transactions = mint.search_transactions('paid', tax_related=True)
   # categories = mint.get_categories()
   # budget = mint.get_budget('10/01/2013', '10/30/2013')
-  add_prop = mint.add_new_property('Bitcoin')
+  # add_prop = mint.add_new_property('Bitcoin')
+  update_prop = mint.update_property(3551373, 5)
 
-  pp(add_prop)
+  pp(update_prop)

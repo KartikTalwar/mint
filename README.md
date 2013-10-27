@@ -419,3 +419,13 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
   'userValue': u'0.00'
 }
 ```
+
+### `mint.update_property(account_id, value)`
+
+
+```py
+{
+  'accountId': 3551373,
+  'id': 1109355
+}
+```
