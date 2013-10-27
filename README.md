@@ -95,7 +95,27 @@ True
 True
 ```
 
-### `mint.get_transactions(account_id=None, reimbursable=False, tax_related=False, vacation=False, loan=False, investment=False)`
+### `mint.get_transactions(**kwargs)`
+
+
+**Optional Paramters**
+
+```py
+# you can pick any of these
+args = {
+         "account_id" : 12345,
+         "reimbursable" : False,
+         "tax_related" : False,
+         "vacation" : False,
+         "loan" : False,
+         "investment" : False
+       }
+
+mint.get_transactions(**args)
+mint.get_transactions(investment=True)
+mint.get_transactions(account_id=12345, tax_related=True)
+```
+
 
 ```py
 [

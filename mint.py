@@ -132,7 +132,6 @@ class Mint:
       if kwargs['loan']:
         payload.update({'filterType' : 'loan'})
 
-
     request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
 
     return request['set'][0]['data']
