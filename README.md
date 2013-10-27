@@ -15,21 +15,23 @@ mint = mint.Mint(email, password)
 
 ### Summary
 
-- mint.get_accounts()
-- mint.get_account_details(account_id)
-- mint.update_accounts()
-- mint.get_transactions(**kwargs)
-- mint.search_transactions(**kwargs)
-- mint.get_categories()
-- mint.get_goals()
-- mint.get_budget()
-- mint.get_category_from_id(category_id)
-- mint.get_properties(name)
-- mint.add_new_property(name)
-- mint.update_property(account_id, amount)
+- mint **.get_accounts()**
+- mint **.get_account_details(account_id)**
+- mint **.update_accounts()**
+- mint **.get_transactions(kwargs)**
+- mint **.search_transactions(kwargs)**
+- mint **.get_categories()**
+- mint **.get_goals()**
+- mint **.get_budget()**
+- mint **.get_category_from_id(category_id)**
+- mint **.get_properties(name)**
+- mint **.add_new_property(name)**
+- mint **.update_property(account_id, amount)**
 
 
-### `mint.get_accounts()`
+### Descriptions
+
+#### `mint.get_accounts()`
 
 ```py
 [
@@ -52,7 +54,7 @@ mint = mint.Mint(email, password)
 ]
 ```
 
-### `mint.get_account_details(account_id)`
+#### `mint.get_account_details(account_id)`
 
 ```py
 {
@@ -100,19 +102,19 @@ mint = mint.Mint(email, password)
 }
 ```
 
-### `mint.update_accounts()`
+#### `mint.update_accounts()`
 
 ```py
 True
 ```
 
-### `mint.logout()`
+#### `mint.logout()`
 
 ```py
 True
 ```
 
-### `mint.get_transactions(**kwargs)`
+#### `mint.get_transactions(**kwargs)`
 
 
 **Optional Paramters**
@@ -177,7 +179,7 @@ mint.get_transactions(account_id=12345, tax_related=True)
 ```
 
 
-### `mint.search_transactions(query, **kwargs)`
+#### `mint.search_transactions(query, **kwargs)`
 
 
 **Optional Paramters**
@@ -243,7 +245,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 ]
 ```
 
-### `mint.get_categories()`
+#### `mint.get_categories()`
 
 ```py
 [
@@ -300,7 +302,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 ```
 
 
-### `mint.get_goals()`
+#### `mint.get_goals()`
 
 ```py
 [
@@ -360,7 +362,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 ]
 ```
 
-### `mint.get_budget()`
+#### `mint.get_budget()`
 
 ```py
 {
@@ -406,7 +408,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 ```
 
 
-### `mint.add_new_property(name)`
+#### `mint.add_new_property(name)`
 
 ```py
 {
@@ -437,7 +439,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 }
 ```
 
-### `mint.update_property(account_id, value)`
+#### `mint.update_property(account_id, value)`
 
 
 ```py
@@ -448,7 +450,7 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
 ```
 
 
-### `mint.get_properties()`
+#### `mint.get_properties()`
 
 ```py
 [
