@@ -4,7 +4,6 @@ import json
 import time
 import requests
 import HTMLParser
-from pprint import pprint as pp
 
 
 class Mint:
@@ -306,21 +305,3 @@ class Mint:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
       return True
     return False
-
-
-if __name__ == '__main__':
-
-  mint = Mint(os.environ['USER1'], os.environ['PASS1'])
-  # accounts = mint.get_accounts()
-  # account_detail = mint.get_account_details(accounts[0]['id'])
-  # update_accounts = mint.update_accounts()
-  # transactions = mint.get_transactions(tax_related=True)
-  # transactions = mint.search_transactions('paid', tax_related=True)
-  # categories = mint.get_categories()
-  # budget = mint.get_budget('10/01/2013', '10/30/2013')
-  # add_prop = mint.add_new_property('Bitcoin')
-  # update_prop = mint.update_property(3551373, 100)
-  # disp_prop = mint.get_properties()
-  bitcoins = mint.update_bitcoins(os.environ['API'])
-
-  pp(bitcoins)
