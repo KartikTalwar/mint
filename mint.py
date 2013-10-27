@@ -137,6 +137,41 @@ class Mint:
     return request['set'][0]['data']
 
 
+  def search_transactions(self, query, **kwargs):
+    payload = {
+                'queryNew'       : '',
+                'query'          : query,
+                'offset'         : 0,
+                'filterType'     : 'cash',
+                'comparableType' : 8,
+                'acctChanged'    : 'T',
+                'task'           :'transactions,txnfilters',
+                'rnd'            : int(time.time())
+              }
+
+    if 'account_id' in kwargs:
+      payload['accountId'] = kwargs['account_id']
+    if 'reimbursable' in kwargs:
+      if kwargs['reimbursable']:
+        payload['query'] += ', tag:"Reimbursable"'
+    if 'tax_related' in kwargs:
+      if kwargs['tax_related']:
+        payload['query'] += ', tag:"Tax Related"'
+    if 'vacation' in kwargs:
+      if kwargs['vacation']:
+        payload['query'] += ', tag:"Vacation"'
+    if 'investment' in kwargs:
+      if kwargs['investment']:
+        payload.update({'filterType' : 'investment'})
+    if 'loan' in kwargs:
+      if kwargs['loan']:
+        payload.update({'filterType' : 'loan'})
+
+    request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
+
+    return request['set'][0]['data']
+
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
@@ -150,7 +185,7 @@ if __name__ == '__main__':
   accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
   # update_accounts = mint.update_accounts()
-  transactions = mint.get_transactions(tax_related=True)
-  # transactions = mint.get_transactions(account_id=accounts[0]['id'])
+  # transactions = mint.get_transactions(tax_related=True)
+  transactions = mint.search_transactions('paid', tax_related=True)
 
   pp(transactions)
