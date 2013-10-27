@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import requests
+import HTMLParser
 from pprint import pprint as pp
 
 
@@ -252,6 +253,17 @@ class Mint:
                 'accountType' : 'a',
                 'token' : self.token
               }
+
+    check = self.session.get('https://wwws.mint.com/htmlFragment.xevent?task=as-nav-content-pr&rnd=%s' % int(time.time())).json()
+
+    if "<div class='hide' id='prlogins'>" in check['xmlContent']:
+      check  = check['xmlContent'].split("<div class='hide' id='prlogins'>")[1].split('</div>')[0]
+      html   = HTMLParser.HTMLParser()
+      others = json.loads(html.unescape(check))
+
+      for i in others:
+        if i['name'] == name:
+          return i
 
     request = self.session.post('https://wwws.mint.com/updateAccount.xevent', data=payload)
 
