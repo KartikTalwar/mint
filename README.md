@@ -225,3 +225,59 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
   }
 ]
 ```
+
+### `mint.get_categories()`
+
+```py
+[
+  {
+    'id': 15,
+    'isL1': True,
+    'value': u'Travel',
+    'children': [
+                  {
+                    'id': 1501,
+                    'isL1': False,
+                    'isStandard': True,
+                    'value': u'Air Travel'
+                  },
+                  {
+                    'id': 1502,
+                    'isL1': False,
+                    'isStandard': True,
+                    'value': u'Hotel'
+                  },
+                  {
+                    'id': 1503,
+                    'isL1': False,
+                    'isStandard': True,
+                    'value': u'Rental Car & Taxi'
+                  },
+                  {
+                    'id': 1504,
+                    'isL1': False,
+                    'isStandard': True,
+                    'value': u'Vacation'}
+                  ],
+  },
+  {
+    'id': 20,
+    'isL1': True,
+    'value': u'Uncategorized',
+    'children': [
+                  {
+                    'id': 2001,
+                    'isL1': False,
+                    'isStandard': True,
+                    'value': u'Cash & ATM'
+                  },
+                  {
+                    'id': 2002,
+                    'isL1': False,
+                    'isStandard': True,
+                  'value': u'Check'
+                  }
+                ]
+  }
+]
+```

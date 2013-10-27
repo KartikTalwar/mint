@@ -176,6 +176,13 @@ class Mint:
     return request['set'][0]['data']
 
 
+  def get_categories(self):
+    get_url = 'https://wwws.mint.com/app/getJsonData.xevent?task=categories&rnd=%s' % int(time.time())
+    request = self.session.get(get_url).json()
+
+    return request['set'][0]['data']
+
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
@@ -186,10 +193,11 @@ class Mint:
 if __name__ == '__main__':
 
   mint = Mint(os.environ['USER'], os.environ['PASS'])
-  accounts = mint.get_accounts()
+  # accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
   # update_accounts = mint.update_accounts()
   # transactions = mint.get_transactions(tax_related=True)
-  transactions = mint.search_transactions('paid', tax_related=True)
+  # transactions = mint.search_transactions('paid', tax_related=True)
+  categories = mint.get_categories()
 
-  pp(transactions)
+  pp(categories)
