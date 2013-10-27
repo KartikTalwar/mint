@@ -40,6 +40,3 @@ print mint.update_property(3551373, 100)
 
 # update bitcoin balance from coinbase
 print mint.update_bitcoins(coinbase)
-
-
-
