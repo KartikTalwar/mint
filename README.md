@@ -281,3 +281,64 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
   }
 ]
 ```
+
+
+### `mint.get_goals()`
+
+```py
+[
+  {
+    "imageUri": "https://images.mint.com/i/goal/type/small_emergencyfund.jpg",
+    "hasUserImage": false,
+    "budgetAmt": 100,
+    "accounts": [
+                  942160,
+                  942045
+                ],
+    "percent": 108.42,
+    "status": "met",
+    "monthly_expense": 50,
+    "targetAmt": 1000,
+    "expectedAmt": 1000,
+    "currentMonthAmt": 1014.7,
+    "isLinked": "true",
+    "period": 3,
+    "currentAmount": 2000.48,
+    "type": "6",
+    "tip": "1 months behind",
+    "id": 34297,
+    "guid": "A870AA04E56C94A42EB6",
+    "budgetType": "all",
+    "projectedDate": 1382684400000,
+    "name": "Emergency Fund",
+    "targetDate": 1367391600000,
+    "monthlyAmt": 100,
+    "actions": [
+                {
+                  "isUser": false,
+                  "id": 140632,
+                  "title": "Make sure you're saving enough in your emergency fund",
+                  "order": 1,
+                  "created": 1359703209000,
+                  "completed": 0
+                },
+                {
+                  "isUser": false,
+                  "id": 140633,
+                  "title": "Save with a high-yield savings account",
+                  "order": 2,
+                  "created": 1359703209000,
+                  "completed": 0
+                },
+                {
+                  "isUser": false,
+                  "id": 283081,
+                  "title": "Consider an investment account",
+                  "order": 2,
+                  "created": 1375985296000,
+                  "completed": 0
+                }
+              ]
+  }
+]
+```

@@ -183,6 +183,13 @@ class Mint:
     return request['set'][0]['data']
 
 
+  def get_goals(self):
+    get_url = 'https://wwws.mint.com/app/getJsonData.xevent?task=goals&rnd=%s' % int(time.time())
+    request = self.session.get(get_url).json()
+
+    return request['set'][0]['data']
+
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
