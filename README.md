@@ -12,6 +12,23 @@ mint = mint.Mint(email, password)
 
 ## Methods
 
+
+### Summary
+
+- mint.get_accounts()
+- mint.get_account_details(account_id)
+- mint.update_accounts()
+- mint.get_transactions(**kwargs)
+- mint.search_transactions(**kwargs)
+- mint.get_categories()
+- mint.get_goals()
+- mint.get_budget()
+- mint.get_category_from_id(category_id)
+- mint.get_properties(name)
+- mint.add_new_property(name)
+- mint.update_property(account_id, amount)
+
+
 ### `mint.get_accounts()`
 
 ```py
@@ -428,4 +445,38 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
   'accountId': 3551373,
   'id': 1109355
 }
+```
+
+
+### `mint.get_properties()`
+
+```py
+[
+  {
+    'accountId': 3551373,
+    'accountType': u'property',
+    'accountTypeUi': u'3',
+    'associatedLoanAccounts': [],
+    'cardClassName': u'pr',
+    'creationTime': u'October 26, 2013',
+    'currentBalance': u'5.00',
+    'displayName': u'Asset',
+    'fiLoginAccountsSize': 1,
+    'hasLogo': False,
+    'id': 1109355,
+    'isActive': True,
+    'isClosed': False,
+    'isError': False,
+    'isHidden': False,
+    'isLiability': False,
+    'isUserRoleAdmin': False,
+    'lastUpdated': u'2013-10-26 20:19:57.0',
+    'lastUpdatedAgo': u'21 minutes',
+    'name': u'Bitcoin',
+    'status': 901,
+    'terminal': True,
+    'unassociatedLoanAccounts': [],
+    'userValue': u'5.00'
+  }
+]
 ```

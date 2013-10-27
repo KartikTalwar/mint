@@ -243,6 +243,18 @@ class Mint:
     return 'Unknown'
 
 
+  def get_properties(self):
+    check = self.session.get('https://wwws.mint.com/htmlFragment.xevent?task=as-nav-content-pr&rnd=%s' % int(time.time())).json()
+
+    if "<div class='hide' id='prlogins'>" in check['xmlContent']:
+      check  = check['xmlContent'].split("<div class='hide' id='prlogins'>")[1].split('</div>')[0]
+      html   = HTMLParser.HTMLParser()
+
+      return json.loads(html.unescape(check))
+
+    return []
+
+
   def add_new_property(self, name):
     payload = {
                 'types' : 'pr',
@@ -254,16 +266,11 @@ class Mint:
                 'token' : self.token
               }
 
-    check = self.session.get('https://wwws.mint.com/htmlFragment.xevent?task=as-nav-content-pr&rnd=%s' % int(time.time())).json()
+    others = self.get_properties()
 
-    if "<div class='hide' id='prlogins'>" in check['xmlContent']:
-      check  = check['xmlContent'].split("<div class='hide' id='prlogins'>")[1].split('</div>')[0]
-      html   = HTMLParser.HTMLParser()
-      others = json.loads(html.unescape(check))
-
-      for i in others:
-        if i['name'] == name:
-          return i
+    for i in others:
+      if i['name'] == name:
+        return i
 
     request = self.session.post('https://wwws.mint.com/updateAccount.xevent', data=payload)
 
@@ -303,6 +310,7 @@ if __name__ == '__main__':
   # categories = mint.get_categories()
   # budget = mint.get_budget('10/01/2013', '10/30/2013')
   # add_prop = mint.add_new_property('Bitcoin')
-  update_prop = mint.update_property(3551373, 5)
+  # update_prop = mint.update_property(3551373, 100)
+  disp_prop = mint.get_properties()
 
-  pp(update_prop)
+  pp(disp_prop)
