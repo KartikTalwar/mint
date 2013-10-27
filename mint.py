@@ -187,7 +187,59 @@ class Mint:
     get_url = 'https://wwws.mint.com/app/getJsonData.xevent?task=goals&rnd=%s' % int(time.time())
     request = self.session.get(get_url).json()
 
-    return request['set'][0]['data']
+    return request['set'][0]['data']['current']
+
+
+  def get_budget(self, start_date=None, end_date=None):
+    get_url = 'https://wwws.mint.com/getBudget.xevent?startDate=%s&endDate=%s&rnd=%s' % (start_date, end_date, int(time.time()))
+    request = self.session.get(get_url).json()
+    data = {}
+
+    for month,values in request['data']['spending'].iteritems():
+      data[month] = {}
+      data[month]['budgeted'] = []
+      data[month]['unbudgeted'] = []
+      data[month]['summary'] = {
+                                 'total_spending' : values['tot']['amt'],
+                                 'budgeted' : values['tot']['bu'],
+                                 'unbudgeted' : values['tot']['ub']
+                               }
+      for i in values['ub']:
+        if 'pid' in i and i['cat'] != 0:
+          data[month]['unbudgeted'].append({
+                                        'amount' : i['amt'],
+                                        'category_id' : i['cat'],
+                                        'category_name' : self.get_category_from_id(i['cat'])
+                                      })
+      for j in values['bu']:
+        data[month]['budgeted'].append({
+                                      'is_transfer' : j['isTransfer'],
+                                      'category_id' : j['cat'],
+                                      'category_name' : self.get_category_from_id(j['cat']),
+                                      'remaining_balance' : j['rbal'],
+                                      'remaining_amount' : j['ramt'],
+                                      'is_income' : j['isIncome'],
+                                      'budget_amount' : j['bgt'],
+                                      'budget_id' : j['id'],
+                                      'total_spending' : j['amt']
+                                    })
+
+    return data
+
+
+  def get_category_from_id(self, cid):
+    if cid == 0:
+      return 'Uncategorized'
+
+    for i in self.get_categories():
+      if i['id'] == cid:
+        return i['value']
+      if 'children' in i:
+        for j in i['children']:
+          if j['id'] == cid:
+            return j['value']
+
+    return 'Unknown'
 
 
   def logout(self):
@@ -205,6 +257,7 @@ if __name__ == '__main__':
   # update_accounts = mint.update_accounts()
   # transactions = mint.get_transactions(tax_related=True)
   # transactions = mint.search_transactions('paid', tax_related=True)
-  categories = mint.get_categories()
+  # categories = mint.get_categories()
+  budget = mint.get_budget('10/01/2013', '10/30/2013')
 
-  pp(categories)
+  pp(budget)

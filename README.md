@@ -342,3 +342,48 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
   }
 ]
 ```
+
+### `mint.get_budget()`
+
+```py
+{
+  '24165': {
+             'budgeted': [
+                           {
+                             'budget_amount': 60.0,
+                             'budget_id': 9594395,
+                             'category_id': 13,
+                             'category_name': u'Bills & Utilities',
+                             'is_income': False,
+                             'is_transfer': False,
+                             'remaining_amount': 0,
+                             'remaining_balance': -20.01,
+                             'total_spending': 80.01
+                           },
+                           {
+                             'budget_amount': 50.0,
+                             'budget_id': 9591425,
+                             'category_id': 1,
+                             'category_name': u'Entertainment',
+                             'is_income': False,
+                             'is_transfer': False,
+                             'remaining_amount': 0,
+                             'remaining_balance': 20.01,
+                             'total_spending': 29.99
+                           }
+                         ],
+            'summary': {
+                         'budgeted': 110.0,
+                         'total_spending': 110.00,
+                         'unbudgeted': 0.0
+                       },
+            'unbudgeted': [
+                            {
+                              'amount': 0.0,
+                              'category_id': 1574468,
+                              'category_name': u'ATM Withdrawal'
+                            }
+                          ]
+           }
+}
+```
