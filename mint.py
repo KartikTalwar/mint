@@ -119,6 +119,12 @@ class Mint:
     if 'reimbursable' in kwargs:
       if kwargs['reimbursable']:
         payload['query'] = 'tag:"Reimbursable"'
+    if 'tax_related' in kwargs:
+      if kwargs['tax_related']:
+        payload['query'] = 'tag:"Tax Related"'
+    if 'vacation' in kwargs:
+      if kwargs['vacation']:
+        payload['query'] = 'tag:"Vacation"'
 
     request = self.session.get('https://wwws.mint.com/app/getJsonData.xevent', params=payload).json()
 
@@ -138,6 +144,7 @@ if __name__ == '__main__':
   accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
   # update_accounts = mint.update_accounts()
-  transactions = mint.get_transactions(account_id=accounts[0]['id'])
+  transactions = mint.get_transactions(tax_related=True)
+  # transactions = mint.get_transactions(account_id=accounts[0]['id'])
 
   pp(transactions)
