@@ -242,6 +242,28 @@ class Mint:
     return 'Unknown'
 
 
+  def add_new_property(self, name):
+    payload = {
+                'types' : 'pr',
+                'accountName' : name,
+                'accountValue' : 0.00,
+                'associatedLoanRadio' : 'F',
+                'isAdd' : 'T',
+                'accountType' : 'a',
+                'token' : self.token
+              }
+
+    request = self.session.post('https://wwws.mint.com/updateAccount.xevent', data=payload)
+
+    return request.json()['response']
+
+    # post_args = {"accountId": account_id, "types": "ot", "accountName": "Bitcoin",
+    #             "accountValue": formatted_amount, "associatedLoanRadio": "No", "accountType": "3",
+    #             "accountStatus": "1",  "token": token}
+    # response = url_post("https://wwws.mint.com/updateAccount.xevent", post_args)
+    # print "Updated Bitcoin account on mint with current balance: %s" % (formatted_amount)
+    # return response
+
   def logout(self):
     if self.token:
       self.session.get('https://wwws.mint.com/logout.event?task=explicit')
@@ -251,13 +273,14 @@ class Mint:
 
 if __name__ == '__main__':
 
-  mint = Mint(os.environ['USER'], os.environ['PASS'])
+  mint = Mint(os.environ['USER1'], os.environ['PASS1'])
   # accounts = mint.get_accounts()
   # account_detail = mint.get_account_details(accounts[0]['id'])
   # update_accounts = mint.update_accounts()
   # transactions = mint.get_transactions(tax_related=True)
   # transactions = mint.search_transactions('paid', tax_related=True)
   # categories = mint.get_categories()
-  budget = mint.get_budget('10/01/2013', '10/30/2013')
+  # budget = mint.get_budget('10/01/2013', '10/30/2013')
+  add_prop = mint.add_new_property('Bitcoin')
 
-  pp(budget)
+  pp(add_prop)

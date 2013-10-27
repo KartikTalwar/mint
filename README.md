@@ -387,3 +387,35 @@ mint.search_transactions('paid', account_id=12345, tax_related=True)
            }
 }
 ```
+
+
+### `mint.add_new_property(name)`
+
+```py
+{
+  'accountId': 3551297,
+  'accountType': u'property',
+  'accountTypeUi': u'3',
+  'associatedLoanAccounts': [],
+  'cardClassName': u'pr',
+  'creationTime': u'October 26, 2013',
+  'currentBalance': u'0.00',
+  'displayName': u'Asset',
+  'fiLoginAccountsSize': 1,
+  'hasLogo': False,
+  'id': 1109330,
+  'isActive': True,
+  'isClosed': False,
+  'isError': False,
+  'isHidden': False,
+  'isLiability': False,
+  'isUserRoleAdmin': False,
+  'lastUpdated': u'2013-10-26 20:07:41.0',
+  'lastUpdatedAgo': u'0 seconds',
+  'name': u'Bitcoin',
+  'status': 901,
+  'terminal': True,
+  'unassociatedLoanAccounts': [],
+  'userValue': u'0.00'
+}
+```
